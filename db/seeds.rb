@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+rand(1..5).times do
+  t = Tournament.create(name: Faker::Sports::Football.competition)
+  rand(1..5).times do
+    Stage.create(name: Faker::Games::SuperMario.location, tournament_id: t.id)
+  end
+end
+
+
