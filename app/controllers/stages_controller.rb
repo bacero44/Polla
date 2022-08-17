@@ -1,6 +1,6 @@
 class StagesController < ApplicationController
   def index
-    stages = Stage.find_by(tournament_id: params[:tournament])
+    stages = Stage.where(tournament_id: params[:tournament])
     render json: StageSerializer.new(stages), status: :ok
   end
 
@@ -10,7 +10,6 @@ class StagesController < ApplicationController
     if stage.groups.present?
       options[:include] = [:groups]
     end
-    
     render json: StageSerializer.new(stage, options), status: :ok
   end
 end

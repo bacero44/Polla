@@ -8,21 +8,20 @@
 
 
 
-t = Tournament.create(name: "FIFA World Cup 2022") 
-s = Stage.create(name: 'Grups', tournament_id: t.id)
-g = Group.create(
+tournament = Tournament.create(name: 'FIFA World Cup 2022')
+stage = Stage.create(name: 'Grups', tournament_id: tournament.id)
+groups = Group.create(
   [
-    { id: 1, name: 'A', stage_id: s.id },
-    { id: 2, name: 'B', stage_id: s.id },
-    { id: 3, name: 'C', stage_id: s.id },
-    { id: 4, name: 'D', stage_id: s.id },
-    { id: 5, name: 'E', stage_id: s.id },
-    { id: 6, name: 'F', stage_id: s.id },
-    { id: 7, name: 'G', stage_id: s.id },
-    { id: 8, name: 'H', stage_id: s.id },
+    { id: 1, name: 'A', stage_id: stage.id },
+    { id: 2, name: 'B', stage_id: stage.id },
+    { id: 3, name: 'C', stage_id: stage.id },
+    { id: 4, name: 'D', stage_id: stage.id },
+    { id: 5, name: 'E', stage_id: stage.id },
+    { id: 6, name: 'F', stage_id: stage.id },
+    { id: 7, name: 'G', stage_id: stage.id },
+    { id: 8, name: 'H', stage_id: stage.id }
   ]
-) 
-
+)
 
 teams = Team.create(
   [
@@ -58,5 +57,64 @@ teams = Team.create(
     { id: 30, name: 'Ghana', image_url: '/flags/gh.svg' },
     { id: 31, name: 'Uruguay', image_url: '/flags/uy.svg' },
     { id: 32, name: 'Korea Republic', image_url: '/flags/kr.svg' }
+  ]
+)
+
+teams.each do |t|
+  ParticipatingTeam.create(tournament_id: tournament.id, team_id: t.id)
+end
+
+matches = Match.create(
+  [
+    { home_team_id: 4, away_team_id: 3, start: '21-11-2022 11:00', group_id: 1, stage_id: 1 },
+    { home_team_id: 5, away_team_id: 6, start: '21-11-2022 14:00', group_id: 2, stage_id: 1 },
+    { home_team_id: 1, away_team_id: 2, start: '21-11-2022 17:00', group_id: 1, stage_id: 1 },
+    { home_team_id: 7, away_team_id: 8, start: '21-11-2022 20:00', group_id: 2, stage_id: 1 },
+    { home_team_id: 9, away_team_id: 10, start: '22-11-2022 11:00', group_id: 3, stage_id: 1 },
+    { home_team_id: 14, away_team_id: 15, start: '22-11-2022 14:00', group_id: 4, stage_id: 1 },
+    { home_team_id: 11, away_team_id: 12, start: '22-11-2022 17:00', group_id: 3, stage_id: 1 },
+    { home_team_id: 13, away_team_id: 16, start: '22-11-2022 20:00', group_id: 4, stage_id: 1 },
+    { home_team_id: 23, away_team_id: 24, start: '23-11-2022 11:00', group_id: 6, stage_id: 1 },
+    { home_team_id: 18, away_team_id: 19, start: '23-11-2022 14:00', group_id: 5, stage_id: 1 },
+    { home_team_id: 17, away_team_id: 20, start: '23-11-2022 17:00', group_id: 5, stage_id: 1 },
+    { home_team_id: 21, away_team_id: 22, start: '23-11-2022 20:00', group_id: 6, stage_id: 1 },
+    { home_team_id: 27, away_team_id: 28, start: '24-11-2022 11:00', group_id: 7, stage_id: 1 },
+    { home_team_id: 31, away_team_id: 32, start: '24-11-2022 14:00', group_id: 8, stage_id: 1 },
+    { home_team_id: 29, away_team_id: 30, start: '24-11-2022 17:00', group_id: 8, stage_id: 1 },
+    { home_team_id: 25, away_team_id: 26, start: '24-11-2022 20:00', group_id: 7, stage_id: 1 },
+
+    { home_team_id: 8, away_team_id: 6, start: '25-11-2022 11:00', group_id: 2, stage_id: 1 },
+    { home_team_id: 1, away_team_id: 3, start: '25-11-2022 14:00', group_id: 1, stage_id: 1 },
+    { home_team_id: 4, away_team_id: 2, start: '25-11-2022 17:00', group_id: 1, stage_id: 1 },
+    { home_team_id: 5, away_team_id: 7, start: '25-11-2022 20:00', group_id: 2, stage_id: 1 },
+    { home_team_id: 15, away_team_id: 16, start: '26-11-2022 11:00', group_id: 4, stage_id: 1 },
+    { home_team_id: 12, away_team_id: 10, start: '26-11-2022 14:00', group_id: 3, stage_id: 1 },
+    { home_team_id: 13, away_team_id: 14, start: '26-11-2022 17:00', group_id: 4, stage_id: 1 },
+    { home_team_id: 9, away_team_id: 11, start: '26-11-2022 20:00', group_id: 3, stage_id: 1 },
+    { home_team_id: 19, away_team_id: 20, start: '27-11-2022 11:00', group_id: 5, stage_id: 1 },
+    { home_team_id: 21, away_team_id: 23, start: '27-11-2022 14:00', group_id: 6, stage_id: 1 },
+    { home_team_id: 24, away_team_id: 22, start: '27-11-2022 17:00', group_id: 6, stage_id: 1 },
+    { home_team_id: 17, away_team_id: 18, start: '27-11-2022 20:00', group_id: 5, stage_id: 1 },
+    { home_team_id: 28, away_team_id: 26, start: '28-11-2022 11:00', group_id: 7, stage_id: 1 },
+    { home_team_id: 32, away_team_id: 30, start: '28-11-2022 14:00', group_id: 8, stage_id: 1 },
+    { home_team_id: 25, away_team_id: 27, start: '28-11-2022 17:00', group_id: 7, stage_id: 1 },
+    { home_team_id: 29, away_team_id: 31, start: '28-11-2022 20:00', group_id: 8, stage_id: 1 },
+
+    { home_team_id: 2, away_team_id: 3, start:'29-11-2022 16:00', group_id: 1, stage_id: 1 },
+    { home_team_id: 4, away_team_id: 1, start:'29-11-2022 16:00', group_id: 1, stage_id: 1 },
+    { home_team_id: 6, away_team_id: 7, start:'29-11-2022 20:00', group_id: 2, stage_id: 1 },
+    { home_team_id: 8, away_team_id: 5, start:'29-11-2022 20:00', group_id: 2, stage_id: 1 },
+    { home_team_id: 15, away_team_id: 13, start:'30-11-2022 16:00', group_id: 4, stage_id: 1 },
+    { home_team_id: 16, away_team_id: 14, start:'30-11-2022 16:00', group_id: 4, stage_id: 1 },
+    { home_team_id: 12, away_team_id: 9, start:'30-11-2022 20:00', group_id: 3, stage_id: 1 },
+    { home_team_id: 10, away_team_id: 11, start:'30-11-2022 20:00', group_id: 3, stage_id: 1 },
+    { home_team_id: 24, away_team_id: 21, start:'1-12-2022 16:00', group_id: 6, stage_id: 1 },
+    { home_team_id: 22, away_team_id: 23, start:'1-12-2022 16:00', group_id: 6, stage_id: 1 },
+    { home_team_id: 19, away_team_id: 17, start:'1-12-2022 20:00', group_id: 5, stage_id: 1 },
+    { home_team_id: 20, away_team_id: 18, start:'1-12-2022 20:00', group_id: 5, stage_id: 1 },
+    { home_team_id: 32, away_team_id: 29, start:'2-12-2022 16:00', group_id: 8, stage_id: 1 },
+    { home_team_id: 30, away_team_id: 31, start:'2-12-2022 16:00', group_id: 8, stage_id: 1 },
+    { home_team_id: 26, away_team_id: 27, start:'2-12-2022 20:00', group_id: 7, stage_id: 1 },
+    { home_team_id: 28, away_team_id: 25, start:'2-12-2022 20:00', group_id: 7, stage_id: 1 }
   ]
 )
